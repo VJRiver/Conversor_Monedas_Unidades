@@ -209,7 +209,7 @@ public class Principal extends JFrame {
         try {
             cantidadACambiar = Double.parseDouble(JOptionPane.showInputDialog("Introduce la cantidad de pesos"));
             resultadoMoneda = cantidadACambiar*7.63;
-            JOptionPane.showMessageDialog(null, "Tienes " + resultadoMoneda +" Yen Japoneses");
+            JOptionPane.showMessageDialog(null, "Tienes " + resultadoMoneda +" Yenes Japoneses");
         }catch(Exception e) {
             JOptionPane.showMessageDialog(null, "Intenta de nuevo. Solamente se aceptan enteros y decimales.");
         }
