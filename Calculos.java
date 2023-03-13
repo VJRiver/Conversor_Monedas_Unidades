@@ -9,21 +9,23 @@ public class Calculos {
     private DatosMapas datosMapas = new DatosMapas();
     static int contadorMoneda = 0;
     
+//  contadorMoneda++;
+//  if(contadorMoneda == 1) {
+//      JOptionPane.showConfirmDialog(null, "¿Desea continuar?", JOptionPane.YES_NO_OPTION);
+//  }
+  //System.out.println("\nContador Moneda: " + contadorMoneda);
+    
     
     public void convierteMonedas(int opcion1, int opcion2){
-        double resultadoMoneda = 0;
-        double cantidadACambiar = 0;
+        double resultadoMoneda;
+        double cantidadACambiar;
         
         try {
             cantidadACambiar = Double.parseDouble(JOptionPane.showInputDialog("Introduzca cantidad a cambiar, solamente números "));
             datosMapas.llenarMapa(opcion1, opcion2, 0);
             resultadoMoneda = cantidadACambiar * datosMapas.getFactores().get(opcion2);
             JOptionPane.showMessageDialog(null, "El equivalente en " + datosMapas.getEtiquetas().get(opcion2) + " es " + String.format("%.2f", resultadoMoneda));
-            contadorMoneda++;
-//            if(contadorMoneda == 1) {
-//                JOptionPane.showConfirmDialog(null, "¿Desea continuar?", JOptionPane.YES_NO_OPTION);
-//            }
-            System.out.println("\nContador Moneda: " + contadorMoneda);
+
         }catch(NullPointerException e) {
             
             e.printStackTrace();
@@ -51,7 +53,7 @@ public class Calculos {
             e.printStackTrace();
         }catch(NumberFormatException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Formato incorrecto, sólo se admiten números");
+            JOptionPane.showMessageDialog(null, "Formato incorrecto, sólo se admiten números sin comas, puntos ni espacios");
         }finally {
             System.out.println("\nOpcion1= " + opcion1 + " Opcion2 = " + opcion2);
         }

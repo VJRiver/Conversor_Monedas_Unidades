@@ -31,6 +31,8 @@ public class Principal extends JFrame {
 
     private int seleccion1;
     private int seleccion2;
+    private int buffer;
+    
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -45,28 +47,17 @@ public class Principal extends JFrame {
         });
     }
     
-    private class primerSeleccionUnidades implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if(comboBox.getSelectedIndex() != 0) {
-                seleccion2 = CBsubUnidades.getSelectedIndex();
-//                CBsubUnidades.setModel(new DefaultComboBoxModel<String>(datosARellenar.getUnidades(seleccion1)));
-            }
-            //System.out.println("\nSelección 2: " + seleccion2);
-        }
-        
-    }
 
     /**
      * Create the frame.
      */
     public Principal() {
-
+        
         setTitle("Conversor de Monedas y Unidades");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(500, 200, 800, 562);
         setResizable(false);
+        
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -89,42 +80,45 @@ public class Principal extends JFrame {
         CBsubUnidades.setFont(new Font("Linux Biolinum G", Font.BOLD, 13));
         CBsubUnidades.setBounds(179, 259, 426, 32);
         contentPane.add(CBsubUnidades);  
-        CBsubUnidades.addActionListener(new primerSeleccionUnidades());
-  
-        
-     // Rellena el segundo ComboBox en base a lo seleccionado en el primero
+
         comboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {                
                 if(e.getStateChange() == ItemEvent.SELECTED) {                    
                     if(comboBox.getSelectedIndex() != 0) {
                         seleccion1 = comboBox.getSelectedIndex();
+                        // CBsubUnidades.setSelectedIndex(0);
+                        System.out.println("Evento comboBox, opcion1: " + seleccion1 + " opcion2: " + seleccion2);
                         CBsubUnidades.setModel(new DefaultComboBoxModel<String>(datosARellenar.getUnidades(seleccion1)));
                     }
+
                 }                
             }            
         });
         
-
-        
-        CBsubUnidades.addItemListener(new ItemListener() {
+        class EventoUnidades implements ItemListener{
 
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED) {
                     seleccion2 = CBsubUnidades.getSelectedIndex();
-                }
-                //System.out.println("\nSelección 2: " + seleccion2);
-            }
-            
-        });
+                    System.out.println("Selección 2 recien asignada: " + seleccion2);
+                }                
+            }            
+        }
+        
+        EventoUnidades cambioUnidades = new EventoUnidades();
+        
+        CBsubUnidades.addItemListener(cambioUnidades);
+        
 
         JButton btnAceptar = new JButton("Convertir");
         
         btnAceptar.addActionListener(new ActionListener() {            
             public void actionPerformed(ActionEvent e) {
-                if(seleccion1 == 0) {
-                    JOptionPane.showMessageDialog(null, "Necesitas escoger un tipo de conversión");
+
+                if(seleccion1 == 0 || CBsubUnidades.getSelectedItem().equals("Selecciona opción")) {
+                    JOptionPane.showMessageDialog(null, "Selecciona opciones válidas en los ComboBoxes");
                 }else if(seleccion1 == 1){
                     convertir.convierteMonedas(seleccion1, seleccion2);
                 }else if(seleccion1 == 2){
