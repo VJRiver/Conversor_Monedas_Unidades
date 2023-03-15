@@ -7,25 +7,28 @@ public class Calculos {
     private double resultadoMoneda = 0;
     private double cantidadACambiar = 0;
     private DatosMapas datosMapas = new DatosMapas();
-    static int contadorMoneda = 0;
-    
-//  contadorMoneda++;
-//  if(contadorMoneda == 1) {
-//      JOptionPane.showConfirmDialog(null, "¿Desea continuar?", JOptionPane.YES_NO_OPTION);
-//  }
-  //System.out.println("\nContador Moneda: " + contadorMoneda);
-    
+    private static int contadorMoneda;
+    private static int contadorTemperatura;
+    private static int contadorLongitud;
+    private static int contadorMasa;
+    private Confirmacion confirmar; 
+
     
     public void convierteMonedas(int opcion1, int opcion2){
         double resultadoMoneda;
         double cantidadACambiar;
+        
         
         try {
             cantidadACambiar = Double.parseDouble(JOptionPane.showInputDialog("Introduzca cantidad a cambiar, solamente números "));
             datosMapas.llenarMapa(opcion1, opcion2, 0);
             resultadoMoneda = cantidadACambiar * datosMapas.getFactores().get(opcion2);
             JOptionPane.showMessageDialog(null, "El equivalente en " + datosMapas.getEtiquetas().get(opcion2) + " es " + String.format("%.2f", resultadoMoneda));
-
+            
+            contadorMoneda++;
+            confirmar = new Confirmacion(contadorMoneda);
+            confirmar.mensaje();
+            
         }catch(NullPointerException e) {
             
             e.printStackTrace();
@@ -37,7 +40,6 @@ public class Calculos {
         }
 
     }
-
     
     
     public void convierteTemperatura(int opcion1, int opcion2) {
@@ -48,6 +50,11 @@ public class Calculos {
             datosMapas.llenarMapa(opcion1, opcion2, temperaturaIngresada);        
             resultadoTemperatura = datosMapas.getFactores().get(opcion2);        
             JOptionPane.showMessageDialog(null, "La temperatura en " + datosMapas.getEtiquetas().get(opcion2) + " es " + String.format("%.2f", resultadoTemperatura));
+            
+            contadorTemperatura++;
+            confirmar = new Confirmacion(contadorTemperatura);
+            confirmar.mensaje();
+            
         }catch(NullPointerException e) {
             
             e.printStackTrace();
@@ -71,6 +78,11 @@ public class Calculos {
                 datosMapas.llenarMapa(opcion1, opcion2, 0.0);
                 resultadoLongitud = longitudIngresada * datosMapas.getFactores().get(opcion2);
                 JOptionPane.showMessageDialog(null, "La longitud equivalente en " + datosMapas.getEtiquetas().get(opcion2) + " es " + String.format("%.2f", resultadoLongitud));
+                
+                contadorLongitud++;
+                confirmar = new Confirmacion(contadorLongitud);
+                confirmar.mensaje();
+                
                 }catch(NullPointerException e) {
                     e.printStackTrace();
                 }catch(NumberFormatException ex) {
@@ -90,6 +102,9 @@ public class Calculos {
             double masaIngresada = Double.parseDouble(JOptionPane.showInputDialog("Introduce la masa a calcular, solamente números "));
             resultadoMasa = masaIngresada*datosMapas.getFactores().get(opcion2);
             JOptionPane.showMessageDialog(null, "La masa equivalente en " + datosMapas.getEtiquetas().get(opcion2) + " es " + String.format("%.2f", resultadoMasa));
+            contadorMasa++;
+            confirmar = new Confirmacion(contadorMasa);
+            confirmar.mensaje();
         }catch(NullPointerException e) {
             e.printStackTrace();
         }catch(NumberFormatException ex) {
