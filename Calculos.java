@@ -4,8 +4,6 @@ import java.util.Map;
 
 public class Calculos {
 
-    private double resultadoMoneda = 0;
-    private double cantidadACambiar = 0;
     private DatosMapas datosMapas = new DatosMapas();
     private static int contadorMoneda;
     private static int contadorTemperatura;

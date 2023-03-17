@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import java.awt.Color;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -24,7 +25,8 @@ import java.awt.event.ActionEvent;
  */
 public class Principal extends JFrame {
 
-    private JPanel contentPane;
+    //private JPanel contentPane;
+    private JLabel contentPane;
     private JComboBox<String> CBsubUnidades;
     private JComboBox<String> comboBox;
     private DatosComboBoxes datosARellenar = new DatosComboBoxes();
@@ -32,9 +34,6 @@ public class Principal extends JFrame {
 
     private int seleccion1;
     private int seleccion2;
-    private int buffer;
-    
-
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -58,18 +57,21 @@ public class Principal extends JFrame {
         setTitle("Conversor de Monedas y Unidades");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        setBounds(500, 200, 800, 562);
+        setBounds(400, 205, 800, 562);
         setResizable(false);
         
-        contentPane = new JPanel();
+        //contentPane = new JPanel();
+        contentPane = new JLabel();
+        contentPane.setIcon(new ImageIcon("src\\img\\Conversor_Moneda.png"));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         setContentPane(contentPane);
         contentPane.setLayout(null);
         
-        JLabel lblNewLabel = new JLabel("Selecciona tipo de conversión");
-        lblNewLabel.setBounds(188, 27, 407, 32);
-        lblNewLabel.setFont(new Font("Linux Biolinum G", Font.BOLD, 30));
+        JLabel lblNewLabel = new JLabel("Conversión de Unidades");
+        lblNewLabel.setBounds(155, 27, 500, 32);
+        lblNewLabel.setFont(new Font("Arial Black", Font.ITALIC, 35));
+        lblNewLabel.setForeground(Color.BLACK);
         contentPane.add(lblNewLabel);
         
         comboBox = new JComboBox<>();
@@ -123,6 +125,7 @@ public class Principal extends JFrame {
                 if(seleccion1 == 0 || CBsubUnidades.getSelectedItem().equals("Selecciona opción")) {
                     JOptionPane.showMessageDialog(null, "Selecciona opciones válidas en los ComboBoxes");
                 }else if(seleccion1 == 1){
+                    
                     convertir.convierteMonedas(seleccion1, seleccion2);
                 }else if(seleccion1 == 2){
                     convertir.convierteTemperatura(seleccion1, seleccion2);
