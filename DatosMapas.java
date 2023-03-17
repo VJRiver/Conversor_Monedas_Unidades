@@ -36,10 +36,18 @@ public class DatosMapas {
         }else if(opcion1 == 2) {
             factores.put(0,0.0);
             etiquetas.put(0, null);
-            factores.put(1, (temperatura*1.8)+32);
+            factores.put(1, (temperatura*1.8)+32); // C a F
             etiquetas.put(1, "grados Fahrenheit");
-            factores.put(2, (temperatura-32)*0.5555555555555556);
-            etiquetas.put(2, "grados Celsius");
+            factores.put(2, (temperatura - 273.15) * 1.8 + 32); // K a F
+            etiquetas.put(2, "grados Kelvin");
+            factores.put(3, temperatura - 273.15); // K a C
+            etiquetas.put(3, "grados Celsius");
+            factores.put(4, (temperatura-32)*0.5555555555555556); // F a C
+            etiquetas.put(4, "grados Celsius");
+            factores.put(5, temperatura + 273.15); // C a K
+            etiquetas.put(5, "grados Kelvin");
+            factores.put(6, (temperatura - 32) * 0.5555555555555556 + 273.15); // F a K
+            etiquetas.put(6, "grados Kelvin");
         }else if(opcion1 == 3) {
           
             factores.put(0, 0.0);

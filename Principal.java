@@ -2,6 +2,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -38,6 +39,7 @@ public class Principal extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                    JFrame.setDefaultLookAndFeelDecorated(true);                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                     Principal frame = new Principal();
                     frame.setVisible(true);
                 } catch (Exception e) {
@@ -55,6 +57,7 @@ public class Principal extends JFrame {
         
         setTitle("Conversor de Monedas y Unidades");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         setBounds(500, 200, 800, 562);
         setResizable(false);
         
