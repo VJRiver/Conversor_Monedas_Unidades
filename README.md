@@ -1,7 +1,7 @@
 # Conversor Monedas
 <h2>Programa para convertir entre algunas divisas y otras unidades</h2>
-![Conversor Monedas](https://user-images.githubusercontent.com/38737685/222485160-2ccdcd9c-ee25-4691-9de3-1a90616b91ea.png)
-<br><hr><br>
+![Gif_De_Proyecto](https://user-images.githubusercontent.com/38737685/225995406-e551c15f-b23e-47fc-9822-543aff2935f6.gif)
+
 
 El programa usa Java Swing, construido con la herramienta WindowBuilder y el IDE Eclipse.
 
